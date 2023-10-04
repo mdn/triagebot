@@ -2,7 +2,7 @@ name: issue-project
 
 on:
   schedule:
-    - cron:  '0 * * * *'
+    - cron: "0 * * * *"
 
 jobs:
   issue-project:
@@ -15,6 +15,8 @@ jobs:
         with:
           node-version: 18
           cache: npm
+
+      - run: npm ci
 
       - run: npm run issue-project
         env:
