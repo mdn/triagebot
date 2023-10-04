@@ -1,0 +1,23 @@
+name: issue-project
+
+on:
+  schedule:
+    - cron:  '0 * * * *'
+
+jobs:
+  issue-project:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+
+      - run: npm run issue-project
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          ISSUE_PROJECT_NUMBER: ${{ secrets.ISSUE_PROJECT_NUMBER }}
+          ISSUE_PROJECT_QUERY: is:public is:open label:"needs triage" -repo:mdn/browser-compat-data -repo:mdn/translated-content
