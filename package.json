@@ -10,6 +10,12 @@
     "dotenv": "^16.3.1"
   },
   "scripts": {
-    "issue-project": "node src/issue-project.js"
+    "issue-project": "node src/issue-project.js",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3"
   }
 }
