@@ -22,5 +22,6 @@ jobs:
       - run: npm run issue-project
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          ISSUE_PROJECT_OWNER: mdn
           ISSUE_PROJECT_NUMBER: ${{ secrets.ISSUE_PROJECT_NUMBER }}
           ISSUE_PROJECT_QUERY: is:public is:open label:"needs triage" -repo:mdn/browser-compat-data -repo:mdn/translated-content
