@@ -4,12 +4,13 @@ async function main() {
   const projectOwner = process.env["ISSUE_PROJECT_OWNER"];
   const projectNumber = Number(process.env["ISSUE_PROJECT_NUMBER"]);
 
-  const oneWeekAgo = new Date();
-  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+  // Only add issues older than 5 days.
+  const createdBefore = new Date();
+  createdBefore.setDate(createdBefore.getDate() - 5);
 
   const q = `org:${projectOwner} is:issue ${
     process.env.ISSUE_PROJECT_QUERY
-  } -project:${projectOwner}/${projectNumber} created:<${oneWeekAgo.toISOString()}`;
+  } -project:${projectOwner}/${projectNumber} created:<${createdBefore.toISOString()}`;
 
   console.log(`Searching issues:\n${q}`);
   const issues = await octokit.paginate(
