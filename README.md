@@ -14,7 +14,7 @@ Setup:
 1. Set `ISSUE_PROJECT_NUMBER` to the number of the target project.
 2. Adjust `ISSUE_PROJECT_QUERY`, if necessary.
 
-Run `npm run issue-project` to add all issues matching the query to the project.
+Run `npm run add-to-project` to add all issues matching the query to the project.
 
 ## Acknowledgement
 

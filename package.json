@@ -10,7 +10,7 @@
     "dotenv": "^16.3.1"
   },
   "scripts": {
-    "issue-project": "node src/issue-project.js",
+    "add-to-project": "node src/add-to-project.js",
     "prepare": "husky install"
   },
   "devDependencies": {

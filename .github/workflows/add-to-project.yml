@@ -1,4 +1,4 @@
-name: issue-project
+name: add-to-project
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  issue-project:
+  add-to-project:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,7 +20,7 @@ jobs:
       - run: npm ci
 
       - name: Issue triage
-        run: npm run issue-project
+        run: npm run add-to-project
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           ISSUE_PROJECT_OWNER: mdn
@@ -28,7 +28,7 @@ jobs:
           ISSUE_PROJECT_QUERY: org:mdn is:issue is:public is:open label:"needs triage" -repo:mdn/browser-compat-data -repo:mdn/translated-content sort:created-asc
 
       - name: Content issues
-        run: npm run issue-project
+        run: npm run add-to-project
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           ISSUE_PROJECT_OWNER: mdn
@@ -36,7 +36,7 @@ jobs:
           ISSUE_PROJECT_QUERY: 'repo:mdn/content is:issue is:public is:open label:"effort: small","effort: medium","effort: large" sort:created-asc'
 
       - name: Engineering issues
-        run: npm run issue-project
+        run: npm run add-to-project
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           ISSUE_PROJECT_OWNER: mdn
@@ -44,7 +44,7 @@ jobs:
           ISSUE_PROJECT_QUERY: repo:mdn/yari is:issue is:public is:open label:p0,p1,p2,p3,p4 sort:created-asc
 
       - name: Product issues
-        run: npm run issue-project
+        run: npm run add-to-project
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           ISSUE_PROJECT_OWNER: mdn
