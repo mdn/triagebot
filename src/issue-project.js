@@ -8,7 +8,7 @@ async function main() {
   const createdBefore = new Date();
   createdBefore.setDate(createdBefore.getDate() - 4);
 
-  const q = `org:${projectOwner} is:issue ${
+  const q = `${
     process.env.ISSUE_PROJECT_QUERY
   } -project:${projectOwner}/${projectNumber} created:<${createdBefore.toISOString()}`;
 
