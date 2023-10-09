@@ -1,12 +1,16 @@
-import { addIssueToProject, getProjectId, octokit } from "./lib.js";
+import {
+  addIssueToProject,
+  getProjectId,
+  getWorkingDaysAgo,
+  octokit,
+} from "./lib.js";
 
 async function main() {
   const projectOwner = process.env["ISSUE_PROJECT_OWNER"];
   const projectNumber = Number(process.env["ISSUE_PROJECT_NUMBER"]);
 
-  // Only add issues older than 4 days.
-  const createdBefore = new Date();
-  createdBefore.setDate(createdBefore.getDate() - 4);
+  // Only add issues older than 3 working days.
+  const createdBefore = getWorkingDaysAgo(3);
 
   const q = `${
     process.env.ISSUE_PROJECT_QUERY

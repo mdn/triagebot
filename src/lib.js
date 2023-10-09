@@ -50,3 +50,15 @@ export async function addIssueToProject(projectId, contentId) {
 
   return res.addProjectV2ItemById.item.id;
 }
+
+export function getWorkingDaysAgo(daysAgo) {
+  const date = new Date();
+
+  for (let i = 0; i < daysAgo; i++) {
+    do {
+      date.setDate(date.getDate() - 1);
+    } while ([0, 6].includes(date.getDay()));
+  }
+
+  return date;
+}
