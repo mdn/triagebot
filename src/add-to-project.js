@@ -29,7 +29,7 @@ async function main() {
     console.log();
     const projectId = await getProjectId(projectOwner, projectNumber);
     console.log(
-      `Adding issues to project ${projectOwner}/${projectNumber} (${projectId}):`,
+      `Adding issues to project https://github.com/orgs/${projectOwner}/projects/${projectNumber} (${projectId}):`,
     );
     for (const issue of issues) {
       console.log(`> - ${issue.html_url}`);
