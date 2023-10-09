@@ -8,9 +8,9 @@ import {
 async function main() {
   const projectOwner = process.env["ISSUE_PROJECT_OWNER"];
   const projectNumber = Number(process.env["ISSUE_PROJECT_NUMBER"]);
+  const projectDelay = Number(process.env["ISSUE_PROJECT_DELAY"]) || 0;
 
-  // Only add issues older than 3 working days.
-  const createdBefore = getWorkingDaysAgo(3);
+  const createdBefore = getWorkingDaysAgo(projectDelay);
 
   const q = `${
     process.env.ISSUE_PROJECT_QUERY
