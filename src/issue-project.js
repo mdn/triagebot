@@ -4,9 +4,9 @@ async function main() {
   const projectOwner = process.env["ISSUE_PROJECT_OWNER"];
   const projectNumber = Number(process.env["ISSUE_PROJECT_NUMBER"]);
 
-  // Only add issues older than 5 days.
+  // Only add issues older than 4 days.
   const createdBefore = new Date();
-  createdBefore.setDate(createdBefore.getDate() - 5);
+  createdBefore.setDate(createdBefore.getDate() - 4);
 
   const q = `org:${projectOwner} is:issue ${
     process.env.ISSUE_PROJECT_QUERY
