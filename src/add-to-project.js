@@ -9,7 +9,9 @@ async function main() {
   const projectOwner = process.env["ISSUE_PROJECT_OWNER"];
   const projectNumber = Number(process.env["ISSUE_PROJECT_NUMBER"]);
   const projectDelay = Number(process.env["ISSUE_PROJECT_DELAY"]) || 0;
-  const queries = process.env.ISSUE_PROJECT_QUERY.split("\n");
+  const queries = process.env.ISSUE_PROJECT_QUERY.trim()
+    .split("\n")
+    .filter(Boolean);
 
   const createdBefore = getWorkingDaysAgo(projectDelay);
 
