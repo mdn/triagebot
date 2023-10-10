@@ -1,0 +1,53 @@
+name: Add issues to projects
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+jobs:
+  add-issues-to-project:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+
+      - run: npm ci
+
+      - name: Issue triage
+        run: npm run add-to-project
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          ISSUE_PROJECT_DELAY: 3
+          ISSUE_PROJECT_OWNER: mdn
+          ISSUE_PROJECT_NUMBER: 33
+          ISSUE_PROJECT_QUERY: org:mdn is:issue is:public is:open archived:false label:"needs triage" -repo:mdn/browser-compat-data -repo:mdn/translated-content sort:created-asc
+
+      - name: Content issues
+        run: npm run add-to-project
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          ISSUE_PROJECT_OWNER: mdn
+          ISSUE_PROJECT_NUMBER: 37
+          ISSUE_PROJECT_QUERY: 'repo:mdn/content is:issue is:public is:open label:"effort: small","effort: medium","effort: large" sort:created-asc'
+
+      - name: Engineering issues
+        run: npm run add-to-project
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          ISSUE_PROJECT_OWNER: mdn
+          ISSUE_PROJECT_NUMBER: 36
+          ISSUE_PROJECT_QUERY: repo:mdn/yari is:issue is:public is:open label:p0,p1,p2,p3,p4 sort:created-asc
+
+      - name: Product issues
+        run: npm run add-to-project
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          ISSUE_PROJECT_OWNER: mdn
+          ISSUE_PROJECT_NUMBER: 38
+          ISSUE_PROJECT_QUERY: 'org:mdn is:issue is:public is:open archived:false label:"Resource: Product","Resource: UX",ux sort:created-asc'
