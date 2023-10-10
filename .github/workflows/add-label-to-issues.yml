@@ -1,4 +1,4 @@
-name: label-issues
+name: add-label-to-issues
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  label-issues:
+  add-label-to-issues:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,7 +20,7 @@ jobs:
       - run: npm ci
 
       - name: Label issues
-        run: npm run label-issues
+        run: npm run add-label-to-issues
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           ISSUE_LABEL: "needs triage"
