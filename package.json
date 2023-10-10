@@ -10,7 +10,7 @@
     "dotenv": "^16.3.1"
   },
   "scripts": {
-    "add-label-to-issues": "node src/add-label-to-issues.js",
+    "add-labels": "node src/add-labels.js",
     "add-to-project": "node src/add-to-project.js",
     "prepare": "husky install"
   },
