@@ -24,4 +24,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           ISSUE_LABEL: "needs triage"
-          ISSUE_QUERY: org:mdn is:issue is:public is:open no:label -repo:mdn/browser-compat-data -repo:mdn/curriculum -repo:mdn/translated-content sort:created-asc
+          ISSUE_QUERY: org:mdn is:issue is:public is:open no:label archived:false -repo:mdn/browser-compat-data -repo:mdn/curriculum -repo:mdn/translated-content sort:created-asc
