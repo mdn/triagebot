@@ -51,3 +51,29 @@ jobs:
           ISSUE_PROJECT_OWNER: mdn
           ISSUE_PROJECT_NUMBER: 38
           ISSUE_PROJECT_QUERY: 'org:mdn is:issue is:public is:open archived:false label:"Resource: Product","Resource: UX",ux sort:created-asc'
+
+      - name: Content PRs
+        run: npm run add-to-project
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          ISSUE_PROJECT_OWNER: mdn
+          ISSUE_PROJECT_NUMBER: 39
+          ISSUE_PROJECT_QUERY: |
+            org:mdn is:pr is:public is:open archived:false sort:created-asc team-review-requested:mdn/core-yari-content
+            org:mdn is:pr is:public is:open archived:false sort:created-asc user-review-requested:bsmth
+            org:mdn is:pr is:public is:open archived:false sort:created-asc user-review-requested:dipikabh
+            org:mdn is:pr is:public is:open archived:false sort:created-asc user-review-requested:Rumyra
+            org:mdn is:pr is:public is:open archived:false sort:created-asc user-review-requested:zfox23
+
+      - name: Engineering PRs
+        run: npm run add-to-project
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          ISSUE_PROJECT_OWNER: mdn
+          ISSUE_PROJECT_NUMBER: 40
+          ISSUE_PROJECT_QUERY: |
+            org:mdn is:pr is:public is:open archived:false sort:created-asc team-review-requested:mdn/core-dev
+            org:mdn is:pr is:public is:open archived:false sort:created-asc user-review-requested:caugner
+            org:mdn is:pr is:public is:open archived:false sort:created-asc user-review-requested:fiji-flo
+            org:mdn is:pr is:public is:open archived:false sort:created-asc user-review-requested:LeoMcA
+            repo:mdn/yari is:pr is:public is:open archived:false sort:created-asc -author:app/dependabot review:none
