@@ -31,7 +31,7 @@ jobs:
             org:mdn is:pr is:public is:open archived:false sort:created-asc user-review-requested:dipikabh
             org:mdn is:pr is:public is:open archived:false sort:created-asc user-review-requested:Rumyra
             org:mdn is:pr is:public is:open archived:false sort:created-asc user-review-requested:zfox23
-            repo:mdn/content is:pr is:public is:open archived:false sort:created-asc -author:app/dependabot no:reviewers
+            repo:mdn/content is:pr is:public is:open archived:false sort:created-asc -author:app/dependabot review:none
 
       - name: Engineering PRs
         run: npm run add-to-project
@@ -44,5 +44,5 @@ jobs:
             org:mdn is:pr is:public is:open archived:false sort:created-asc user-review-requested:caugner
             org:mdn is:pr is:public is:open archived:false sort:created-asc user-review-requested:fiji-flo
             org:mdn is:pr is:public is:open archived:false sort:created-asc user-review-requested:LeoMcA
-            repo:mdn/rumba is:pr is:public is:open archived:false sort:created-asc -author:app/dependabot no:reviewers
-            repo:mdn/yari is:pr is:public is:open archived:false sort:created-asc -author:app/dependabot no:reviewers
+            repo:mdn/rumba is:pr is:public is:open archived:false sort:created-asc -author:app/dependabot review:none
+            repo:mdn/yari is:pr is:public is:open archived:false sort:created-asc -author:app/dependabot review:none
