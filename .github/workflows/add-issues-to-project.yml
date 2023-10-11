@@ -1,4 +1,4 @@
-name: Add issues to projects
+name: Add issues to project
 
 on:
   schedule:
@@ -18,6 +18,13 @@ jobs:
           cache: npm
 
       - run: npm ci
+
+      - name: Add "needs triage" label to unlabeled issues
+        run: npm run add-labels
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          ISSUE_LABEL: "needs triage"
+          ISSUE_QUERY: org:mdn is:issue is:public is:open no:label archived:false -repo:mdn/browser-compat-data -repo:mdn/curriculum -repo:mdn/translated-content sort:created-asc
 
       - name: Issue triage
         run: npm run add-to-project
