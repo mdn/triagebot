@@ -44,5 +44,9 @@ jobs:
             org:mdn is:pr is:public is:open archived:false sort:created-asc user-review-requested:caugner
             org:mdn is:pr is:public is:open archived:false sort:created-asc user-review-requested:fiji-flo
             org:mdn is:pr is:public is:open archived:false sort:created-asc user-review-requested:LeoMcA
-            repo:mdn/rumba is:pr is:public is:open archived:false sort:created-asc -author:app/dependabot review:none
-            repo:mdn/yari is:pr is:public is:open archived:false sort:created-asc -author:app/dependabot review:none
+            is:pr is:public is:open archived:false -author:app/dependabot review:none sort:created-asc repo:mdn/bob
+            is:pr is:public is:open archived:false -author:app/dependabot review:none sort:created-asc repo:mdn/bcd-utils
+            is:pr is:public is:open archived:false -author:app/dependabot review:none sort:created-asc repo:mdn/differy
+            is:pr is:public is:open archived:false -author:app/dependabot review:none sort:created-asc repo:mdn/rumba
+            is:pr is:public is:open archived:false -author:app/dependabot review:none sort:created-asc repo:mdn/yari
+            is:pr is:public is:open archived:false -author:app/dependabot review:none sort:created-asc repo:mdn/workflows
