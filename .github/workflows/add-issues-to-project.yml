@@ -64,3 +64,8 @@ jobs:
           ISSUE_PROJECT_OWNER: mdn
           ISSUE_PROJECT_NUMBER: 38
           ISSUE_PROJECT_QUERY: 'org:mdn is:issue is:public is:open archived:false label:"Resource: Product","Resource: UX",ux -repo:mdn/browser-compat-data -repo:mdn/translated-content -repo:mdn/webextensions-examples sort:created-asc'
+
+      - name: Print rate limit
+        run: gh api /rate_limit
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}

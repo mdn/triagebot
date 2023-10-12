@@ -50,3 +50,8 @@ jobs:
             is:pr is:public is:open archived:false -author:app/dependabot review:none sort:created-asc repo:mdn/rumba
             is:pr is:public is:open archived:false -author:app/dependabot review:none sort:created-asc repo:mdn/yari
             is:pr is:public is:open archived:false -author:app/dependabot review:none sort:created-asc repo:mdn/workflows
+
+      - name: Print rate limit
+        run: gh api /rate_limit
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
