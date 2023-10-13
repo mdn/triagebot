@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 
 env:
+  COMMON_FILTER: is:public is:open archived:false sort:created-asc
   CONTENT_REPO_FILTER: repo:mdn/content repo:mdn/django-diy-blog repo:mdn/django-locallibrary-tutorial repo:mdn/express-locallibrary-tutorial repo:mdn/todo-react repo:mdn/todo-vue repo:mdn/css-examples repo:mdn/dom-examples repo:mdn/houdini-examples repo:mdn/html-examples repo:mdn/imsc-examples repo:mdn/interactive-examples repo:mdn/js-examples repo:mdn/learning-area repo:mdn/perf-examples repo:mdn/pwa-examples repo:mdn/web-components-examples repo:mdn/webassembly-examples repo:mdn/webaudio-examples repo:mdn/webvr-tests repo:mdn/beginner-html-site repo:mdn/beginner-html-site-scripted repo:mdn/beginner-html-site-styled repo:mdn/shared-assets
   ENGINEERING_REPO_FILTER: repo:mdn/bob repo:mdn/bcd-utils repo:mdn/differy repo:mdn/rumba repo:mdn/yari repo:mdn/workflows
 
@@ -30,12 +31,12 @@ jobs:
           ISSUE_PROJECT_OWNER: mdn
           ISSUE_PROJECT_NUMBER: 39
           ISSUE_PROJECT_QUERY: |
-            org:mdn is:pr is:public is:open archived:false sort:created-asc team-review-requested:mdn/core-yari-content
-            org:mdn is:pr is:public is:open archived:false sort:created-asc user-review-requested:bsmth
-            org:mdn is:pr is:public is:open archived:false sort:created-asc user-review-requested:dipikabh
-            org:mdn is:pr is:public is:open archived:false sort:created-asc user-review-requested:Rumyra
-            org:mdn is:pr is:public is:open archived:false sort:created-asc user-review-requested:zfox23
-            is:pr is:public is:open archived:false sort:created-asc -author:app/dependabot review:none ${{ env.CONTENT_REPO_FILTER }}
+            org:mdn is:pr team-review-requested:mdn/core-yari-content ${{ env.COMMON_FILTER }}
+            org:mdn is:pr user-review-requested:bsmth ${{ env.COMMON_FILTER }}
+            org:mdn is:pr user-review-requested:dipikabh ${{ env.COMMON_FILTER }}
+            org:mdn is:pr user-review-requested:Rumyra ${{ env.COMMON_FILTER }}
+            org:mdn is:pr user-review-requested:zfox23 ${{ env.COMMON_FILTER }}
+            is:pr review:none -author:app/dependabot  ${{ env.COMMON_FILTER }} ${{ env.CONTENT_REPO_FILTER }}
 
       - name: Engineering PRs
         run: npm run add-to-project
@@ -44,11 +45,11 @@ jobs:
           ISSUE_PROJECT_OWNER: mdn
           ISSUE_PROJECT_NUMBER: 40
           ISSUE_PROJECT_QUERY: |
-            org:mdn is:pr is:public is:open archived:false sort:created-asc team-review-requested:mdn/core-dev
-            org:mdn is:pr is:public is:open archived:false sort:created-asc user-review-requested:caugner
-            org:mdn is:pr is:public is:open archived:false sort:created-asc user-review-requested:fiji-flo
-            org:mdn is:pr is:public is:open archived:false sort:created-asc user-review-requested:LeoMcA
-            is:pr is:public is:open archived:false -author:app/dependabot review:none sort:created-asc ${{ env.ENGINEERING_REPO_FILTER }}
+            org:mdn is:pr team-review-requested:mdn/core-dev ${{ env.COMMON_FILTER }}
+            org:mdn is:pr user-review-requested:caugner ${{ env.COMMON_FILTER }}
+            org:mdn is:pr user-review-requested:fiji-flo ${{ env.COMMON_FILTER }}
+            org:mdn is:pr user-review-requested:LeoMcA ${{ env.COMMON_FILTER }}
+            is:pr review:none -author:app/dependabot ${{ env.COMMON_FILTER }} ${{ env.ENGINEERING_REPO_FILTER }}
 
       - name: Print rate limit
         run: gh api /rate_limit
