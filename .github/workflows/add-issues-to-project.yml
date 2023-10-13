@@ -43,7 +43,7 @@ jobs:
           ISSUE_PROJECT_NUMBER: 37
           ISSUE_PROJECT_QUERY: |
             org:mdn is:issue is:public is:open archived:false label:"involves: Content" -label:"needs triage" sort:created-asc
-            repo:mdn/content is:issue is:public is:open label:"effort: small","effort: medium","effort: large" sort:created-asc'
+            repo:mdn/content is:issue is:public is:open label:"effort: small","effort: medium","effort: large" sort:created-asc
 
       - name: Engineering issues
         run: npm run add-to-project
