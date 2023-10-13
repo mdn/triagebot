@@ -5,6 +5,10 @@ on:
     - cron: "0 * * * *"
   workflow_dispatch:
 
+env:
+  CONTENT_REPO_FILTER: repo:mdn/content repo:mdn/django-diy-blog repo:mdn/django-locallibrary-tutorial repo:mdn/express-locallibrary-tutorial repo:mdn/todo-react repo:mdn/todo-vue repo:mdn/css-examples repo:mdn/dom-examples repo:mdn/houdini-examples repo:mdn/html-examples repo:mdn/imsc-examples repo:mdn/interactive-examples repo:mdn/js-examples repo:mdn/learning-area repo:mdn/perf-examples repo:mdn/pwa-examples repo:mdn/web-components-examples repo:mdn/webassembly-examples repo:mdn/webaudio-examples repo:mdn/webvr-tests repo:mdn/beginner-html-site repo:mdn/beginner-html-site-scripted repo:mdn/beginner-html-site-styled repo:mdn/shared-assets
+  ENGINEERING_REPO_FILTER: repo:mdn/bob repo:mdn/bcd-utils repo:mdn/differy repo:mdn/rumba repo:mdn/yari repo:mdn/workflows
+
 jobs:
   add-issues-to-project:
     runs-on: ubuntu-latest
@@ -43,7 +47,7 @@ jobs:
           ISSUE_PROJECT_NUMBER: 37
           ISSUE_PROJECT_QUERY: |
             org:mdn is:issue is:public is:open archived:false label:"involves: Content" -label:"needs triage" sort:created-asc
-            repo:mdn/content is:issue is:public is:open label:"effort: small","effort: medium","effort: large" sort:created-asc
+            is:issue is:public is:open label:"effort: small","effort: medium","effort: large" sort:created-asc ${{ env.CONTENT_REPO_FILTER }}
 
       - name: Engineering issues
         run: npm run add-to-project
@@ -53,7 +57,7 @@ jobs:
           ISSUE_PROJECT_NUMBER: 36
           ISSUE_PROJECT_QUERY: |
             org:mdn is:issue is:public is:open archived:false label:"involves: Engineering" -label:"needs triage" sort:created-asc
-            is:issue is:public is:open -label:"needs triage" sort:created-asc repo:mdn/bob repo:mdn/bcd-utils repo:mdn/differy repo:mdn/rumba repo:mdn/yari repo:mdn/workflows
+            is:issue is:public is:open -label:"needs triage" sort:created-asc ${{ env.ENGINEERING_REPO_FILTER }}
 
       - name: Product issues
         run: npm run add-to-project
