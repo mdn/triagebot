@@ -53,12 +53,7 @@ jobs:
           ISSUE_PROJECT_NUMBER: 36
           ISSUE_PROJECT_QUERY: |
             org:mdn is:issue is:public is:open archived:false label:"involves: Engineering" -label:"needs triage" sort:created-asc
-            is:issue is:public is:open -label:"needs triage" sort:created-asc repo:mdn/bob
-            is:issue is:public is:open -label:"needs triage" sort:created-asc repo:mdn/bcd-utils
-            is:issue is:public is:open -label:"needs triage" sort:created-asc repo:mdn/differy
-            is:issue is:public is:open -label:"needs triage" sort:created-asc repo:mdn/rumba
-            is:issue is:public is:open -label:"needs triage" sort:created-asc repo:mdn/yari
-            is:issue is:public is:open -label:"needs triage" sort:created-asc repo:mdn/workflows
+            is:issue is:public is:open -label:"needs triage" sort:created-asc repo:mdn/bob repo:mdn/bcd-utils repo:mdn/differy repo:mdn/rumba repo:mdn/yari repo:mdn/workflows
 
       - name: Product issues
         run: npm run add-to-project
