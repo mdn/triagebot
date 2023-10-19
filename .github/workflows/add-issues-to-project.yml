@@ -9,7 +9,7 @@ env:
   COMMON_FILTER: is:public is:open archived:false sort:created-asc
   CONTENT_REPO_FILTER: repo:mdn/content repo:mdn/django-diy-blog repo:mdn/django-locallibrary-tutorial repo:mdn/express-locallibrary-tutorial repo:mdn/todo-react repo:mdn/todo-vue repo:mdn/css-examples repo:mdn/dom-examples repo:mdn/houdini-examples repo:mdn/html-examples repo:mdn/imsc-examples repo:mdn/interactive-examples repo:mdn/js-examples repo:mdn/learning-area repo:mdn/perf-examples repo:mdn/pwa-examples repo:mdn/web-components-examples repo:mdn/webassembly-examples repo:mdn/webaudio-examples repo:mdn/webvr-tests repo:mdn/beginner-html-site repo:mdn/beginner-html-site-scripted repo:mdn/beginner-html-site-styled repo:mdn/shared-assets
   ENGINEERING_REPO_FILTER: repo:mdn/bob repo:mdn/bcd-utils repo:mdn/differy repo:mdn/rumba repo:mdn/yari repo:mdn/workflows
-  EXCLUDE_OTHER_REPO_FILTER: -repo:mdn/browser-compat-data -repo:mdn/curriculum -repo:mdn/translated-content -repo:mdn/webextensions-examples
+  EXCLUDE_REPOS: -repo:mdn/browser-compat-data -repo:mdn/curriculum -repo:mdn/translated-content -repo:mdn/webextensions-examples
 
 jobs:
   add-issues-to-project:
@@ -30,7 +30,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           ISSUE_LABEL: "needs triage"
-          ISSUE_QUERY: org:mdn is:issue no:label ${{ env.COMMON_FILTER }} ${{ env.EXCLUDE_OTHER_REPO_FILTER }}
+          ISSUE_QUERY: org:mdn is:issue no:label ${{ env.COMMON_FILTER }} ${{ env.EXCLUDE_REPOS }}
 
       - name: Issue triage
         run: npm run add-to-project
@@ -39,7 +39,7 @@ jobs:
           ISSUE_PROJECT_DELAY: 2
           ISSUE_PROJECT_OWNER: mdn
           ISSUE_PROJECT_NUMBER: 33
-          ISSUE_PROJECT_QUERY: org:mdn is:issue label:"needs triage" ${{ env.COMMON_FILTER }} ${{ env.EXCLUDE_OTHER_REPO_FILTER }}
+          ISSUE_PROJECT_QUERY: org:mdn is:issue label:"needs triage" ${{ env.COMMON_FILTER }} ${{ env.EXCLUDE_REPOS }}
 
       - name: Content issues
         run: npm run add-to-project
@@ -48,7 +48,7 @@ jobs:
           ISSUE_PROJECT_OWNER: mdn
           ISSUE_PROJECT_NUMBER: 37
           ISSUE_PROJECT_QUERY: |
-            org:mdn is:issue label:"involves: Content" -label:"needs triage" ${{ env.COMMON_FILTER }} ${{ env.EXCLUDE_OTHER_REPO_FILTER }}
+            org:mdn is:issue label:"involves: Content" -label:"needs triage" ${{ env.COMMON_FILTER }} ${{ env.EXCLUDE_REPOS }}
             is:issue label:"effort: small","effort: medium","effort: large" ${{ env.COMMON_FILTER }} ${{ env.CONTENT_REPO_FILTER }}
 
       - name: Engineering issues
@@ -58,7 +58,7 @@ jobs:
           ISSUE_PROJECT_OWNER: mdn
           ISSUE_PROJECT_NUMBER: 36
           ISSUE_PROJECT_QUERY: |
-            org:mdn is:issue label:"involves: Engineering" -label:"needs triage" ${{ env.COMMON_FILTER }} ${{ env.EXCLUDE_OTHER_REPO_FILTER }}
+            org:mdn is:issue label:"involves: Engineering" -label:"needs triage" ${{ env.COMMON_FILTER }} ${{ env.EXCLUDE_REPOS }}
             is:issue -label:"needs triage" ${{ env.COMMON_FILTER }} ${{ env.ENGINEERING_REPO_FILTER }}
 
       - name: Product issues
@@ -68,7 +68,7 @@ jobs:
           ISSUE_PROJECT_OWNER: mdn
           ISSUE_PROJECT_NUMBER: 38
           ISSUE_PROJECT_QUERY: |
-            org:mdn is:issue label:"involves: Product","involves: UX" -label:"needs triage" ${{ env.COMMON_FILTER }} ${{ env.EXCLUDE_OTHER_REPO_FILTER }}
+            org:mdn is:issue label:"involves: Product","involves: UX" -label:"needs triage" ${{ env.COMMON_FILTER }} ${{ env.EXCLUDE_REPOS }}
 
       - name: Print rate limit
         run: gh api /rate_limit
