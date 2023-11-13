@@ -81,8 +81,8 @@ async function main() {
       const fieldValue = item.fieldValues.nodes.find((fieldValue) =>
         f.is(fieldValue.field),
       );
-      const value = f.getFieldValueValue(fieldValue);
-      const expectedValue = f.getItemValue(item);
+      const value = f.getFieldValueValue(fieldValue) ?? null;
+      const expectedValue = f.getItemValue(item) ?? null;
       if (value !== expectedValue) {
         setProjectItemFieldValue(
           projectId,
