@@ -62,3 +62,206 @@ export function getWorkingDaysAgo(daysAgo) {
 
   return date;
 }
+
+/**
+ * @param {string} orgName
+ * @param {number} projectNumber
+ * @returns {object}
+ */
+export async function getProjectFields(orgName, projectNumber) {
+  const res = await octokit.graphql(
+    `query($orgName: String!, $projectNumber: Int!) {
+            organization(login: $orgName) {
+                projectV2(number: $projectNumber) {
+                    fields (first: 100) {
+                        nodes {
+                            __typename,
+                            ... on ProjectV2FieldCommon {
+                                createdAt,
+                                dataType,
+                                id
+                                name,
+                                updatedAt
+                            }
+                            ... on ProjectV2IterationField {
+                              id
+                            }
+                            ... on ProjectV2SingleSelectField {
+                                options {
+                                    id
+                                    name
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }`,
+    {
+      orgName,
+      projectNumber,
+    },
+  );
+
+  return res.organization.projectV2.fields.nodes;
+}
+
+/**
+ * @param {string} org
+ * @param {number} projectId
+ * @param {number} itemId
+ * @param {string} fieldName
+ * @param {string} textValue
+ * @returns {string}
+ */
+export async function setProjectItemFieldValue(
+  projectId,
+  itemId,
+  fieldId,
+  value,
+) {
+  const res = await octokit.graphql(
+    `mutation($input: UpdateProjectV2ItemFieldValueInput!) {
+            updateProjectV2ItemFieldValue(input: $input) {
+              projectV2Item {
+                id
+              }
+            }
+          }`,
+    {
+      input: {
+        projectId,
+        itemId,
+        fieldId,
+        value,
+      },
+    },
+  );
+
+  return res.updateProjectV2ItemFieldValue.projectV2Item.id;
+}
+
+/**
+ * @param {string} orgName
+ * @param {number} projectNumber
+ */
+export async function* iterateProjectItems(orgName, projectNumber) {
+  let cursor = "";
+  let pageInfo = null;
+  do {
+    const res = await octokit.graphql(
+      `query ($orgName: String!, $projectNumber: Int!, $cursor: String) {
+        organization(login: $orgName) {
+          projectV2(number: $projectNumber) {
+            items(after: $cursor, first: 100) {
+              pageInfo {
+                hasNextPage
+                endCursor
+              }
+              edges {
+                cursor
+                node {
+                  createdAt
+                  id
+                  updatedAt
+                  fieldValues(first: 100) {
+                    nodes {
+                      __typename
+                      ... on ProjectV2ItemFieldValueCommon {
+                        createdAt
+                        creator {
+                          login
+                        }
+                        field {
+                          __typename
+                          ... on ProjectV2FieldCommon {
+                            createdAt
+                            dataType
+                            databaseId
+                            name
+                            updatedAt
+                          }
+                          ... on ProjectV2IterationField {
+                            id
+                          }
+                          ... on ProjectV2SingleSelectField {
+                            options {
+                              id
+                              name
+                            }
+                          }
+                        }
+                        id
+                        updatedAt
+                      }
+                      ... on ProjectV2ItemFieldDateValue {
+                        date
+                      }
+                      ... on ProjectV2ItemFieldNumberValue {
+                        number
+                      }
+                      ... on ProjectV2ItemFieldSingleSelectValue {
+                        optionId
+                      }
+                      ... on ProjectV2ItemFieldTextValue {
+                        text
+                      }
+                    }
+                  }
+                  content {
+                    __typename
+                    ... on Node {
+                      id
+                    }
+                    ... on DraftIssue {
+                      createdAt
+                      creator {
+                        login
+                      }
+                      updatedAt
+                    }
+                    ... on Issue {
+                      author {
+                        login
+                      }
+                      createdAt
+                      updatedAt
+                      closedAt
+                    }
+                    ... on PullRequest {
+                      author {
+                        login
+                      }
+                      createdAt
+                      updatedAt
+                      closedAt
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }`,
+      {
+        orgName,
+        projectNumber,
+        cursor,
+      },
+    );
+    const { projectV2 } = res.organization;
+    const { items } = projectV2;
+    pageInfo = items.pageInfo;
+    for (const edge of items.edges) {
+      yield edge.node;
+    }
+    cursor = pageInfo.endCursor;
+  } while (pageInfo.hasNextPage);
+}
+
+export function extractISODate(dateValue) {
+  if (!dateValue) {
+    return dateValue;
+  }
+  return new Date(dateValue).toISOString().split("T")[0];
+}

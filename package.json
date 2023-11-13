@@ -12,6 +12,7 @@
   "scripts": {
     "add-labels": "node src/add-labels.js",
     "add-to-project": "node src/add-to-project.js",
+    "manage-project-items": "node src/manage-project-items.js",
     "prepare": "husky install"
   },
   "devDependencies": {
