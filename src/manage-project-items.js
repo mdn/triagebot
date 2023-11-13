@@ -22,7 +22,7 @@ function isField(field, name, dataType) {
 const SUPPORTED_FIELDS = [
   {
     is: (field) => isField(field, "created at", "date"),
-    getItemValue: (item) => extractISODate(item.content.createdAt),
+    getItemValue: (item) => extractISODate(item.content?.createdAt),
     getFieldValueValue: (field) => field?.date,
     createInput: (date) => ({ date }),
   },

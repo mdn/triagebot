@@ -177,7 +177,6 @@ export async function* iterateProjectItems(orgName, projectNumber) {
                           ... on ProjectV2FieldCommon {
                             createdAt
                             dataType
-                            databaseId
                             name
                             updatedAt
                           }
