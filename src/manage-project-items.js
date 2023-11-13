@@ -44,6 +44,18 @@ const SUPPORTED_FIELDS = [
     getFieldValueValue: (field) => field?.date,
     createInput: (date) => ({ date }),
   },
+  {
+    is: (field) => isField(field, "merged at", "date"),
+    getItemValue: (item) => extractISODate(item.content?.mergedAt),
+    getFieldValueValue: (field) => field?.date,
+    createInput: (date) => ({ date }),
+  },
+  {
+    is: (field) => isField(field, "merged by", "text"),
+    getItemValue: (item) => item.content?.mergedBy?.login,
+    getFieldValueValue: (field) => field?.text,
+    createInput: (text) => ({ text }),
+  },
 ];
 
 async function getUsedFields(projectOwner, projectNumber) {

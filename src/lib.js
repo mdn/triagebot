@@ -233,6 +233,10 @@ export async function* iterateProjectItems(orgName, projectNumber) {
                         login
                       }
                       createdAt
+                      mergedAt
+                      mergedBy {
+                        login
+                      }
                       updatedAt
                       closedAt
                     }
