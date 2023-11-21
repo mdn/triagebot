@@ -1,9 +1,44 @@
-import * as github from "@actions/github";
+import { Octokit } from "@octokit/core";
+import { paginateRest } from "@octokit/plugin-paginate-rest";
+import { restEndpointMethods } from "@octokit/plugin-rest-endpoint-methods";
+import { throttling } from "@octokit/plugin-throttling";
 import * as dotenv from "dotenv";
 
 dotenv.config();
 
-export const octokit = github.getOctokit(process.env["GH_TOKEN"]);
+const CustomOctokit = Octokit.plugin(
+  paginateRest,
+  restEndpointMethods,
+  throttling,
+);
+
+const RETRY_COUNT = 10;
+
+export const octokit = new CustomOctokit({
+  auth: process.env["GH_TOKEN"],
+  throttle: {
+    onRateLimit: (retryAfter, options, octokit, retryCount) => {
+      octokit.log.warn(
+        `Request quota exhausted for request ${options.method} ${options.url}`,
+      );
+
+      if (retryCount < RETRY_COUNT) {
+        octokit.log.info(`Retrying after ${retryAfter} seconds!`);
+        return true;
+      }
+    },
+    onSecondaryRateLimit: (retryAfter, options, octokit, retryCount) => {
+      octokit.log.warn(
+        `SecondaryRateLimit detected for request ${options.method} ${options.url}`,
+      );
+
+      if (retryCount < RETRY_COUNT) {
+        octokit.log.info(`Retrying after ${retryAfter} seconds!`);
+        return true;
+      }
+    },
+  },
+});
 
 export async function getProjectId(owner, number) {
   const ownerTypeQuery = "organization";
