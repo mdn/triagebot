@@ -25,7 +25,9 @@ jobs:
       - run: npm ci
 
       - name: Content PRs
-        run: npm run add-to-project
+        run: |
+          npm run add-to-project
+          npm run manage-project-items
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           ISSUE_PROJECT_OWNER: mdn
@@ -40,7 +42,9 @@ jobs:
             is:pr review:none -author:app/dependabot  ${{ env.COMMON_FILTER }} ${{ env.CONTENT_REPO_FILTER }}
 
       - name: Engineering PRs
-        run: npm run add-to-project
+        run: |
+          npm run add-to-project
+          npm run manage-project-items
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           ISSUE_PROJECT_OWNER: mdn
