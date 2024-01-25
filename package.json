@@ -7,7 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "@octokit/core": "^5.1.0",
-    "@octokit/plugin-paginate-rest": "^9.1.4",
+    "@octokit/plugin-paginate-rest": "^9.1.5",
     "@octokit/plugin-rest-endpoint-methods": "^10.2.0",
     "@octokit/plugin-retry": "^6.0.1",
     "@octokit/plugin-throttling": "^8.1.3",
