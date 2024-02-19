@@ -11,7 +11,7 @@
     "@octokit/plugin-rest-endpoint-methods": "^10.2.0",
     "@octokit/plugin-retry": "^6.0.1",
     "@octokit/plugin-throttling": "^8.1.3",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.4.4"
   },
   "scripts": {
     "add-labels": "node src/add-labels.js",
