@@ -59,6 +59,12 @@ jobs:
             org:mdn is:pr user-review-requested:LeoMcA ${{ env.COMMON_FILTER }}
             is:pr review:none -author:app/dependabot ${{ env.COMMON_FILTER }} ${{ env.ENGINEERING_REPO_FILTER }}
 
+      - name: Ping
+        env:
+          ping_url: ${{ secrets.PING_URL_PRS }}
+        if: ${{ env.ping_url != '' }}
+        run: curl ${{ env.ping_url }}
+
       - name: Print rate limit
         run: gh api /rate_limit
         env:

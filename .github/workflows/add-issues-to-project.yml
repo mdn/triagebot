@@ -92,6 +92,12 @@ jobs:
           ISSUE_PROJECT_QUERY: |
             org:mdn is:issue label:"involves: Product","involves: UX" -label:"needs triage" ${{ env.COMMON_FILTER }} ${{ env.EXCLUDE_REPOS }}
 
+      - name: Ping
+        env:
+          ping_url: ${{ secrets.PING_URL_ISSUES }}
+        if: ${{ env.ping_url != '' }}
+        run: curl ${{ env.ping_url }}
+
       - name: Print rate limit
         run: gh api /rate_limit
         env:
