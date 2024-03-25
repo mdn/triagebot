@@ -6,11 +6,11 @@
   "author": "Claas Augner <caugner@mozilla.com>",
   "license": "MIT",
   "dependencies": {
-    "@octokit/core": "^5.1.0",
-    "@octokit/plugin-paginate-rest": "^9.2.1",
-    "@octokit/plugin-rest-endpoint-methods": "^10.4.1",
+    "@octokit/core": "^6.0.1",
+    "@octokit/plugin-paginate-rest": "^10.0.0",
+    "@octokit/plugin-rest-endpoint-methods": "^11.0.1",
     "@octokit/plugin-retry": "^6.0.1",
-    "@octokit/plugin-throttling": "^8.2.0",
+    "@octokit/plugin-throttling": "^9.0.3",
     "dotenv": "^16.4.5"
   },
   "scripts": {
