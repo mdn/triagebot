@@ -41,7 +41,7 @@ jobs:
             org:mdn is:pr user-review-requested:dipikabh ${{ env.COMMON_FILTER }}
             org:mdn is:pr user-review-requested:pepelsbey ${{ env.COMMON_FILTER }}
             org:mdn is:pr user-review-requested:Rumyra ${{ env.COMMON_FILTER }}
-            org:mdn is:pr review:none -author:app/dependabot ${{ env.COMMON_FILTER }} ${{ env.CONTENT_REPO_FILTER }}
+            is:pr review:none -author:app/dependabot ${{ env.COMMON_FILTER }} ${{ env.CONTENT_REPO_FILTER }}
 
       - name: Engineering PRs
         run: |
