@@ -2,7 +2,7 @@ name: Add PRs to project
 
 on:
   schedule:
-    - cron: "30 * * * *"
+    - cron: "20 * * * *"
   workflow_dispatch:
 
 concurrency:
@@ -26,6 +26,14 @@ jobs:
           cache: npm
 
       - run: npm ci
+
+      - name: BCD PRs
+        run: |
+          npm run manage-project-items
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          ISSUE_PROJECT_OWNER: mdn
+          ISSUE_PROJECT_NUMBER: 46
 
       - name: Content PRs
         run: |
