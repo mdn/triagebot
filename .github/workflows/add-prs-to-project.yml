@@ -13,7 +13,7 @@ concurrency:
 env:
   COMMON_FILTER: 'is:public is:open archived:false -label:"autorelease: pending" sort:created-asc'
   CONTENT_REPO_FILTER: repo:mdn/content repo:mdn/django-diy-blog repo:mdn/django-locallibrary-tutorial repo:mdn/express-locallibrary-tutorial repo:mdn/todo-react repo:mdn/todo-vue repo:mdn/css-examples repo:mdn/dom-examples repo:mdn/houdini-examples repo:mdn/html-examples repo:mdn/imsc-examples repo:mdn/interactive-examples repo:mdn/js-examples repo:mdn/learning-area repo:mdn/perf-examples repo:mdn/pwa-examples repo:mdn/web-components-examples repo:mdn/webassembly-examples repo:mdn/webaudio-examples repo:mdn/webvr-tests repo:mdn/beginner-html-site repo:mdn/beginner-html-site-scripted repo:mdn/beginner-html-site-styled repo:mdn/shared-assets
-  ENGINEERING_REPO_FILTER: repo:mdn/bob repo:mdn/bcd-utils repo:mdn/differy repo:mdn/mdn-http-observatory repo:mdn/mdn.dev repo:mdn/rumba repo:mdn/yari repo:mdn/workflows
+  ENGINEERING_REPO_FILTER: repo:mdn/bob repo:mdn/bcd-utils repo:mdn/differy repo:mdn/fred repo:mdn/mdn-http-observatory repo:mdn/mdn.dev repo:mdn/rari repo:mdn/rumba repo:mdn/yari repo:mdn/workflows
 
 jobs:
   add-prs-to-project:
