@@ -10,7 +10,7 @@
     "@octokit/plugin-paginate-rest": "^11.4.3",
     "@octokit/plugin-rest-endpoint-methods": "^13.3.1",
     "@octokit/plugin-retry": "^7.1.4",
-    "@octokit/plugin-throttling": "^9.4.0",
+    "@octokit/plugin-throttling": "^9.6.0",
     "dotenv": "^16.4.7"
   },
   "scripts": {
