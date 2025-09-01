@@ -94,8 +94,8 @@ jobs:
           ISSUE_PROJECT_OWNER: mdn
           ISSUE_PROJECT_NUMBER: 36
           ISSUE_PROJECT_QUERY: |
-            org:mdn is:issue label:"involves: Engineering" -label:"needs triage" ${{ env.COMMON_FILTER }} ${{ env.EXCLUDE_REPOS }}
-            is:issue -label:"needs triage" ${{ env.COMMON_FILTER }} ${{ env.EXCLUDE_LABELS }} ${{ env.ENGINEERING_REPO_FILTER }}
+            org:mdn is:issue label:"involves: Engineering" ${{ env.COMMON_FILTER }} ${{ env.EXCLUDE_REPOS }}
+            is:issue ${{ env.COMMON_FILTER }} ${{ env.EXCLUDE_LABELS }} ${{ env.ENGINEERING_REPO_FILTER }}
 
       - name: Ping
         env:
