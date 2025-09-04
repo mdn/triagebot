@@ -23,6 +23,7 @@ async function main() {
       octokit.rest.search.issuesAndPullRequests,
       {
         q,
+        advanced_search: true,
       },
     );
     console.log(`> Found ${issues.length} issues.`);

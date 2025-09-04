@@ -12,8 +12,8 @@ concurrency:
 
 env:
   COMMON_FILTER: is:open is:public archived:false sort:created-asc
-  CONTENT_REPO_FILTER: repo:mdn/content repo:mdn/django-diy-blog repo:mdn/django-locallibrary-tutorial repo:mdn/express-locallibrary-tutorial repo:mdn/todo-react repo:mdn/todo-vue repo:mdn/css-examples repo:mdn/dom-examples repo:mdn/houdini-examples repo:mdn/html-examples repo:mdn/imsc-examples repo:mdn/interactive-examples repo:mdn/js-examples repo:mdn/learning-area repo:mdn/perf-examples repo:mdn/pwa-examples repo:mdn/web-components-examples repo:mdn/webassembly-examples repo:mdn/webaudio-examples repo:mdn/webvr-tests repo:mdn/beginner-html-site repo:mdn/beginner-html-site-scripted repo:mdn/beginner-html-site-styled repo:mdn/shared-assets
-  ENGINEERING_REPO_FILTER: repo:mdn/bob repo:mdn/bcd-utils repo:mdn/differy repo:mdn/fred repo:mdn/mdn-http-observatory repo:mdn/mdn.dev repo:mdn/rari repo:mdn/rumba repo:mdn/yari repo:mdn/workflows
+  CONTENT_REPO_FILTER: (repo:mdn/content OR repo:mdn/django-diy-blog OR repo:mdn/django-locallibrary-tutorial OR repo:mdn/express-locallibrary-tutorial OR repo:mdn/todo-react OR repo:mdn/todo-vue OR repo:mdn/css-examples OR repo:mdn/dom-examples OR repo:mdn/houdini-examples OR repo:mdn/html-examples OR repo:mdn/imsc-examples OR repo:mdn/interactive-examples OR repo:mdn/js-examples OR repo:mdn/learning-area OR repo:mdn/perf-examples OR repo:mdn/pwa-examples OR repo:mdn/web-components-examples OR repo:mdn/webassembly-examples OR repo:mdn/webaudio-examples OR repo:mdn/webvr-tests OR repo:mdn/beginner-html-site OR repo:mdn/beginner-html-site-scripted OR repo:mdn/beginner-html-site-styled OR repo:mdn/shared-assets)
+  ENGINEERING_REPO_FILTER: (repo:mdn/bob OR repo:mdn/bcd-utils OR repo:mdn/differy OR repo:mdn/fred OR repo:mdn/mdn-http-observatory OR repo:mdn/mdn.dev OR repo:mdn/rari OR repo:mdn/rumba OR repo:mdn/yari OR repo:mdn/workflows)
   EXCLUDE_LABELS: -label:"Content:WebExt"
   EXCLUDE_REPOS: -repo:mdn/ai-feedback -repo:mdn/private-ai-feedback -repo:mdn/browser-compat-data -repo:mdn/curriculum -repo:mdn/translated-content -repo:mdn/translated-content-de -repo:mdn/translated-content-it -repo:mdn/webextensions-examples
 
@@ -55,7 +55,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           ISSUE_PROJECT_OWNER: mdn
           ISSUE_PROJECT_NUMBER: 42
-          ISSUE_PROJECT_QUERY: repo:mdn/ai-feedback repo:mdn/private-ai-feedback is:issue
+          ISSUE_PROJECT_QUERY: (repo:mdn/ai-feedback OR repo:mdn/private-ai-feedback) is:issue
 
       - name: BCD issues
         run: |
