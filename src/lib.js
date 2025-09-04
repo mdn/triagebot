@@ -3,9 +3,8 @@ import { paginateRest } from "@octokit/plugin-paginate-rest";
 import { restEndpointMethods } from "@octokit/plugin-rest-endpoint-methods";
 import { retry } from "@octokit/plugin-retry";
 import { throttling } from "@octokit/plugin-throttling";
-import * as dotenv from "dotenv";
 
-dotenv.config();
+import "dotenv/config";
 
 const CustomOctokit = Octokit.plugin(
   paginateRest,
