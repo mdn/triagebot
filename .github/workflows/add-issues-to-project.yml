@@ -29,6 +29,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
+          package-manager-cache: false
 
       - run: npm ci
 
@@ -86,7 +87,6 @@ jobs:
           ISSUE_PROJECT_QUERY: |
             org:mdn is:issue label:"needs content decision" ${{ env.COMMON_FILTER }}
             is:issue ${{ env.COMMON_FILTER }} ${{ env.CONTENT_REPO_FILTER }}
-
 
       - name: Engineering issues
         run: |
