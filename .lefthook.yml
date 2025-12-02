@@ -1,0 +1,10 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - name: prettier
+      run: npx prettier --write --cache --ignore-unknown {staged_files}
+      stage_fixed: true
+
+output:
+  - summary
+  - failure
