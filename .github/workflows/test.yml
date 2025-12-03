@@ -10,7 +10,7 @@ on:
 permissions: {}
 
 jobs:
-  install:
+  lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,3 +27,6 @@ jobs:
 
       - name: Install
         run: npm ci
+
+      - name: Prettier
+        run: npx prettier --check .
