@@ -19,7 +19,7 @@
     "manage-project-items": "node src/manage-project-items.js"
   },
   "devDependencies": {
-    "lefthook": "^2.0.9",
+    "lefthook": "^2.0.12",
     "prettier": "^3.7.4"
   },
   "engines": {
