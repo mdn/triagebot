@@ -3,6 +3,7 @@ import {
   getProjectId,
   getWorkingDaysAgo,
   octokit,
+  redactPrivateRepoUrl,
 } from "./lib.js";
 
 async function main() {
@@ -35,7 +36,10 @@ async function main() {
         `Adding issues to project https://github.com/orgs/${projectOwner}/projects/${projectNumber} (${projectId}):`,
       );
       for (const issue of issues) {
-        console.log(`> - ${issue.html_url}`);
+        const displayUrl = issue.repository?.private
+          ? redactPrivateRepoUrl(issue.html_url)
+          : issue.html_url;
+        console.log(`> - ${displayUrl}`);
         await addIssueToProject(projectId, issue.node_id);
       }
     }

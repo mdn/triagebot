@@ -304,3 +304,28 @@ export function extractISODate(dateValue) {
   }
   return new Date(dateValue).toISOString().split("T")[0];
 }
+
+/**
+ * Redacts the repository name in a URL for private repositories.
+ * @param {string} url - The original URL
+ * @returns {string} The URL with redacted repo name
+ */
+export function redactPrivateRepoUrl(url) {
+  // Parse the URL to extract and redact the repo name
+  // Format: https://github.com/owner/repo/issues/123
+  const match = url.match(
+    /^(https:\/\/github\.com\/[^\/]+\/)([^\/])([^\/]*?)([^\/])?(\/.*)/,
+  );
+  if (!match) return url;
+
+  const [, prefix, first, middle, last, suffix] = match;
+
+  // For 1-2 character names, redact completely
+  if (!last || middle === "") {
+    return `${prefix}${"*".repeat(last ? 2 : 1)}${suffix}`;
+  }
+
+  // Keep first and last char, replace alphanumeric chars with *, keep dots and dashes
+  const redacted = `${first}${middle.replace(/[a-zA-Z0-9]/g, "*")}${last}`;
+  return `${prefix}${redacted}${suffix}`;
+}
