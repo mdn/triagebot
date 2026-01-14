@@ -48,7 +48,6 @@ jobs:
           ISSUE_PROJECT_OWNER: mdn
           ISSUE_PROJECT_NUMBER: 39
           ISSUE_PROJECT_QUERY: |
-            org:mdn is:pr team-review-requested:mdn/core-yari-content ${{ env.COMMON_FILTER }}
             org:mdn is:pr team-review-requested:mdn/content-team ${{ env.COMMON_FILTER }}
             org:mdn is:pr user-review-requested:bsmth ${{ env.COMMON_FILTER }}
             org:mdn is:pr user-review-requested:dipikabh ${{ env.COMMON_FILTER }}
@@ -66,9 +65,7 @@ jobs:
           ISSUE_PROJECT_OWNER: mdn
           ISSUE_PROJECT_NUMBER: 40
           ISSUE_PROJECT_QUERY: |
-            org:mdn is:pr team-review-requested:mdn/core-dev ${{ env.COMMON_FILTER }}
             org:mdn is:pr team-review-requested:mdn/engineering ${{ env.COMMON_FILTER }}
-            org:mdn is:pr user-review-requested:argl ${{ env.COMMON_FILTER }}
             org:mdn is:pr user-review-requested:caugner ${{ env.COMMON_FILTER }}
             org:mdn is:pr user-review-requested:LeoMcA ${{ env.COMMON_FILTER }}
             is:pr review:none -author:app/dependabot ${{ env.COMMON_FILTER }} ${{ env.ENGINEERING_REPO_FILTER }}
