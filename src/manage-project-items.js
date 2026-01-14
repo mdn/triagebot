@@ -56,6 +56,12 @@ const SUPPORTED_FIELDS = [
     getFieldValueValue: (field) => field?.text,
     createInput: (text) => ({ text }),
   },
+  {
+    is: (field) => isField(field, "last commenter", "text"),
+    getItemValue: (item) => item.content?.comments?.nodes.at(-1)?.author?.login,
+    getFieldValueValue: (field) => field?.text,
+    createInput: (text) => ({ text }),
+  },
 ];
 
 async function getUsedFields(projectOwner, projectNumber) {
