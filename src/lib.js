@@ -262,6 +262,13 @@ export async function* iterateProjectItems(orgName, projectNumber) {
                       createdAt
                       updatedAt
                       closedAt
+                      comments(last: 1) {
+                        nodes {
+                          author {
+                            login
+                          }
+                        }
+                      }
                     }
                     ... on PullRequest {
                       author {
@@ -274,6 +281,13 @@ export async function* iterateProjectItems(orgName, projectNumber) {
                       }
                       updatedAt
                       closedAt
+                      comments(last: 1) {
+                        nodes {
+                          author {
+                            login
+                          }
+                        }
+                      }
                     }
                   }
                 }
