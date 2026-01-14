@@ -88,6 +88,13 @@ async function main() {
     return;
   }
 
+  const updatedItems = new Set();
+  const fieldUpdateCounts = new Map();
+
+  for (const f of fields) {
+    fieldUpdateCounts.set(f.field.name, 0);
+  }
+
   for await (const item of iterateProjectItems(projectOwner, projectNumber)) {
     for (const f of fields) {
       const fieldValue = item.fieldValues.nodes.find((fieldValue) =>
@@ -102,6 +109,21 @@ async function main() {
           f.field.id,
           f.createInput(expectedValue),
         );
+        updatedItems.add(item.id);
+        fieldUpdateCounts.set(
+          f.field.name,
+          fieldUpdateCounts.get(f.field.name) + 1,
+        );
+      }
+    }
+  }
+
+  console.log(`\nUpdated ${updatedItems.size} project item(s).`);
+  if (updatedItems.size > 0) {
+    console.log("Field updates:");
+    for (const [fieldName, count] of fieldUpdateCounts) {
+      if (count > 0) {
+        console.log(`  - ${fieldName}: ${count}`);
       }
     }
   }
