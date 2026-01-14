@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Helps with triaging",
   "type": "module",
-  "author": "Claas Augner <caugner@mozilla.com>",
+  "author": "MDN Engineering Team <mdn-dev@mozilla.com>",
   "license": "MIT",
   "dependencies": {
     "@octokit/core": "^7.0.2",
