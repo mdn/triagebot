@@ -11,7 +11,7 @@ concurrency:
   group: shared
 
 env:
-  COMMON_FILTER: 'is:public is:open archived:false -label:"autorelease: pending" sort:created-asc'
+  COMMON_FILTER: 'is:open archived:false -label:"autorelease: pending" sort:created-asc'
   CONTENT_REPO_FILTER: (repo:mdn/content OR repo:mdn/django-diy-blog OR repo:mdn/django-locallibrary-tutorial OR repo:mdn/express-locallibrary-tutorial OR repo:mdn/todo-react OR repo:mdn/todo-vue OR repo:mdn/css-examples OR repo:mdn/dom-examples OR repo:mdn/houdini-examples OR repo:mdn/html-examples OR repo:mdn/imsc-examples OR repo:mdn/js-examples OR repo:mdn/learning-area OR repo:mdn/perf-examples OR repo:mdn/pwa-examples OR repo:mdn/web-components-examples OR repo:mdn/webassembly-examples OR repo:mdn/webaudio-examples OR repo:mdn/webvr-tests OR repo:mdn/beginner-html-site OR repo:mdn/beginner-html-site-scripted OR repo:mdn/beginner-html-site-styled OR repo:mdn/shared-assets)
   ENGINEERING_REPO_FILTER: (repo:mdn/bob OR repo:mdn/bcd-utils OR repo:mdn/differy OR repo:mdn/fred OR repo:mdn/mdn-http-observatory OR repo:mdn/mdn.dev OR repo:mdn/rari OR repo:mdn/rumba OR repo:mdn/yari OR repo:mdn/workflows)
 
