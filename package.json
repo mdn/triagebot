@@ -20,7 +20,7 @@
     "test": "node --test"
   },
   "devDependencies": {
-    "lefthook": "^2.0.16",
+    "lefthook": "^2.1.0",
     "prettier": "^3.8.1"
   },
   "engines": {
