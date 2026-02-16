@@ -49,7 +49,6 @@ jobs:
           ISSUE_PROJECT_NUMBER: 39
           ISSUE_PROJECT_QUERY: |
             org:mdn is:pr team-review-requested:mdn/content-team ${{ env.COMMON_FILTER }}
-            org:mdn is:pr user-review-requested:bsmth ${{ env.COMMON_FILTER }}
             org:mdn is:pr user-review-requested:dipikabh ${{ env.COMMON_FILTER }}
             org:mdn is:pr user-review-requested:pepelsbey ${{ env.COMMON_FILTER }}
             org:mdn is:pr user-review-requested:pransh15 ${{ env.COMMON_FILTER }}
