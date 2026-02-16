@@ -11,6 +11,7 @@
     "@octokit/plugin-rest-endpoint-methods": "^17.0.0",
     "@octokit/plugin-retry": "^8.0.3",
     "@octokit/plugin-throttling": "^11.0.3",
+    "@sentry/node": "^10.39.0",
     "dotenv": "^17.2.4"
   },
   "scripts": {
