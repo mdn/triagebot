@@ -4,7 +4,18 @@ import { restEndpointMethods } from "@octokit/plugin-rest-endpoint-methods";
 import { retry } from "@octokit/plugin-retry";
 import { throttling } from "@octokit/plugin-throttling";
 
+import * as Sentry from "@sentry/node";
 import "dotenv/config";
+
+if (process.env.SENTRY_DSN) {
+  Sentry.init({
+    dsn: process.env.SENTRY_DSN,
+  });
+
+  process.on("beforeExit", async () => {
+    await Sentry.close(2000);
+  });
+}
 
 const CustomOctokit = Octokit.plugin(
   paginateRest,
