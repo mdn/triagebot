@@ -302,6 +302,11 @@ export async function* iterateProjectItems(orgName, projectNumber) {
         cursor,
       },
     );
+    if (!res?.organization?.projectV2) {
+      throw new Error(
+        `Failed to fetch project items for ${orgName}#${projectNumber} (response: ${JSON.stringify(res)})`,
+      );
+    }
     const { projectV2 } = res.organization;
     const { items } = projectV2;
     pageInfo = items.pageInfo;
