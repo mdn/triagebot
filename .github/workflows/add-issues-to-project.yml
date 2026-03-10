@@ -36,6 +36,9 @@ jobs:
       - run: npm ci
 
       - name: Add "needs triage" label to unlabeled issues
+        id: add-labels
+        continue-on-error: true
+        timeout-minutes: 1
         run: npm run add-labels
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -43,6 +46,9 @@ jobs:
           ISSUE_QUERY: org:mdn is:issue no:label ${{ env.COMMON_FILTER }} ${{ env.EXCLUDE_REPOS }}
 
       - name: Issue triage
+        id: issue-triage
+        continue-on-error: true
+        timeout-minutes: 1
         run: |
           npm run add-to-project
           npm run manage-project-items
@@ -53,6 +59,9 @@ jobs:
           ISSUE_PROJECT_QUERY: org:mdn is:issue label:"needs triage" ${{ env.COMMON_FILTER }} ${{ env.EXCLUDE_LABELS }} ${{ env.EXCLUDE_REPOS }}
 
       - name: AI Help feedback
+        id: ai-help
+        continue-on-error: true
+        timeout-minutes: 1
         run: |
           npm run add-to-project
           npm run manage-project-items
@@ -63,6 +72,9 @@ jobs:
           ISSUE_PROJECT_QUERY: (repo:mdn/ai-feedback OR repo:mdn/private-ai-feedback) is:issue
 
       - name: BCD issues
+        id: bcd-issues
+        continue-on-error: true
+        timeout-minutes: 1
         run: |
           npm run manage-project-items
         env:
@@ -71,6 +83,9 @@ jobs:
           ISSUE_PROJECT_NUMBER: 47
 
       - name: BCD meeting agenda
+        id: bcd-meeting
+        continue-on-error: true
+        timeout-minutes: 1
         run: |
           npm run manage-project-items
         env:
@@ -79,6 +94,9 @@ jobs:
           ISSUE_PROJECT_NUMBER: 52
 
       - name: Content issues
+        id: content
+        continue-on-error: true
+        timeout-minutes: 1
         run: |
           npm run add-to-project
           npm run manage-project-items
@@ -91,6 +109,9 @@ jobs:
             is:issue ${{ env.COMMON_FILTER }} ${{ env.CONTENT_REPO_FILTER }}
 
       - name: Engineering issues
+        id: engineering
+        continue-on-error: true
+        timeout-minutes: 1
         run: |
           npm run add-to-project
           npm run manage-project-items
@@ -103,6 +124,9 @@ jobs:
             is:issue ${{ env.COMMON_FILTER }} ${{ env.EXCLUDE_LABELS }} ${{ env.ENGINEERING_REPO_FILTER }}
 
       - name: Contributor issues
+        id: contributor
+        continue-on-error: true
+        timeout-minutes: 1
         run: |
           npm run add-to-project
           npm run manage-project-items
@@ -115,7 +139,7 @@ jobs:
       - name: Ping
         env:
           ping_url: ${{ secrets.PING_URL_ISSUES }}
-        if: ${{ env.ping_url != '' }}
+        if: env.ping_url != '' && !contains(steps.*.outcome, 'failure') && !contains(steps.*.outcome, 'cancelled')
         run: curl ${{ env.ping_url }}
 
       - name: Print rate limit
