@@ -12,7 +12,7 @@ if (process.env.SENTRY_DSN) {
     dsn: process.env.SENTRY_DSN,
   });
 
-  process.on("beforeExit", async () => {
+  process.once("beforeExit", async () => {
     await Sentry.close(2000);
   });
 }
