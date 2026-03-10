@@ -18,6 +18,7 @@ env:
 jobs:
   add-prs-to-project:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     env:
       SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
 
@@ -34,6 +35,9 @@ jobs:
       - run: npm ci
 
       - name: BCD PRs
+        id: bcd
+        continue-on-error: true
+        timeout-minutes: 5
         run: |
           npm run manage-project-items
         env:
@@ -42,6 +46,9 @@ jobs:
           ISSUE_PROJECT_NUMBER: 46
 
       - name: Content PRs
+        id: content
+        continue-on-error: true
+        timeout-minutes: 5
         run: |
           npm run add-to-project
           npm run manage-project-items
@@ -58,6 +65,9 @@ jobs:
             is:pr review:none -author:app/dependabot ${{ env.COMMON_FILTER }} ${{ env.CONTENT_REPO_FILTER }}
 
       - name: Engineering PRs
+        id: engineering
+        continue-on-error: true
+        timeout-minutes: 5
         run: |
           npm run add-to-project
           npm run manage-project-items
@@ -74,7 +84,7 @@ jobs:
       - name: Ping
         env:
           ping_url: ${{ secrets.PING_URL_PRS }}
-        if: ${{ env.ping_url != '' }}
+        if: env.ping_url != '' && !contains(steps.*.outcome, 'failure') && !contains(steps.*.outcome, 'cancelled')
         run: curl ${{ env.ping_url }}
 
       - name: Print rate limit
