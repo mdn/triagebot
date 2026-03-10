@@ -109,7 +109,7 @@ async function main() {
       const value = f.getFieldValueValue(fieldValue) ?? null;
       const expectedValue = f.getItemValue(item) ?? null;
       if (value !== expectedValue) {
-        setProjectItemFieldValue(
+        await setProjectItemFieldValue(
           projectId,
           item.id,
           f.field.id,
