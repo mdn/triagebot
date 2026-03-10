@@ -20,6 +20,7 @@ env:
 jobs:
   add-issues-to-project:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     env:
       SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
 
