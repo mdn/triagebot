@@ -38,7 +38,7 @@ jobs:
       - name: Add "needs triage" label to unlabeled issues
         id: add-labels
         continue-on-error: true
-        timeout-minutes: 1
+        timeout-minutes: 5
         run: npm run add-labels
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -48,7 +48,7 @@ jobs:
       - name: Issue triage
         id: issue-triage
         continue-on-error: true
-        timeout-minutes: 1
+        timeout-minutes: 5
         run: |
           npm run add-to-project
           npm run manage-project-items
@@ -61,7 +61,7 @@ jobs:
       - name: AI Help feedback
         id: ai-help
         continue-on-error: true
-        timeout-minutes: 1
+        timeout-minutes: 5
         run: |
           npm run add-to-project
           npm run manage-project-items
@@ -74,7 +74,7 @@ jobs:
       - name: BCD issues
         id: bcd-issues
         continue-on-error: true
-        timeout-minutes: 1
+        timeout-minutes: 5
         run: |
           npm run manage-project-items
         env:
@@ -85,7 +85,7 @@ jobs:
       - name: BCD meeting agenda
         id: bcd-meeting
         continue-on-error: true
-        timeout-minutes: 1
+        timeout-minutes: 5
         run: |
           npm run manage-project-items
         env:
@@ -96,7 +96,7 @@ jobs:
       - name: Content issues
         id: content
         continue-on-error: true
-        timeout-minutes: 1
+        timeout-minutes: 5
         run: |
           npm run add-to-project
           npm run manage-project-items
@@ -111,7 +111,7 @@ jobs:
       - name: Engineering issues
         id: engineering
         continue-on-error: true
-        timeout-minutes: 1
+        timeout-minutes: 5
         run: |
           npm run add-to-project
           npm run manage-project-items
@@ -126,7 +126,7 @@ jobs:
       - name: Contributor issues
         id: contributor
         continue-on-error: true
-        timeout-minutes: 1
+        timeout-minutes: 5
         run: |
           npm run add-to-project
           npm run manage-project-items
