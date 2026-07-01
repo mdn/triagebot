@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "lefthook": "^2.1.9",
-    "prettier": "^3.8.4"
+    "prettier": "^3.9.4"
   },
   "engines": {
     "node": ">=24"
