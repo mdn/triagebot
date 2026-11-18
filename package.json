@@ -12,7 +12,7 @@
     "@octokit/plugin-retry": "^8.1.1",
     "@octokit/plugin-throttling": "^11.0.5",
     "@sentry/node": "^11.12.0",
-    "dotenv": "^18.0.9"
+    "dotenv": "^18.0.10"
   },
   "scripts": {
     "add-labels": "node src/add-labels.js",
