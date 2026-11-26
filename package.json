@@ -11,8 +11,8 @@
     "@octokit/plugin-rest-endpoint-methods": "^18.0.0",
     "@octokit/plugin-retry": "^8.1.1",
     "@octokit/plugin-throttling": "^11.0.5",
-    "@sentry/node": "^11.12.0",
-    "dotenv": "^18.0.9"
+    "@sentry/node": "^11.16.0",
+    "dotenv": "^18.0.10"
   },
   "scripts": {
     "add-labels": "node src/add-labels.js",
@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "lefthook": "^2.2.2",
-    "prettier": "^3.9.10"
+    "prettier": "^3.10.1"
   },
   "packageManager": "npm@11.20.0",
   "engines": {
